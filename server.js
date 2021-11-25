@@ -15,6 +15,7 @@ mongoose.connect(URI, {
 })
 
 app.use('/user', require('./routes/userRouter'))
+app.use('/site', require('./routes/siteRouter'))
 
 app.get('/', (req, res) => {
     res.json({ msg: 'ON AIR!!!' })
