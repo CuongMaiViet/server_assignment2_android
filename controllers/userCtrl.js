@@ -49,7 +49,7 @@ const userCtrl = {
 
             return res.json({
                 msg: `Login successfully as ${email}`,
-                result: user._id,
+                data: user,
             })
 
         } catch (error) {
