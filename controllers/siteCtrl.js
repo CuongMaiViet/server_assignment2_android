@@ -134,7 +134,7 @@ const siteCtrl = {
                 .populate({ path: "listofpeople", select: "-__v -createdAt -updatedAt -password" }), req.query)
                 .filter().sort().paginate()
 
-            const sites = await feature.query
+            const sites = await feature.query;
 
             return res.json(sites)
         } catch (error) {
