@@ -107,7 +107,7 @@ const siteCtrl = {
 
             res.json({ msg: `Successfully update number of tested people on ${site.name}` })
         } catch (error) {
-            return res.json({ msg: error.message })
+            return res.json({ msg: error.message });
         }
     },
 
