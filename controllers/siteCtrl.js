@@ -50,10 +50,10 @@ const siteCtrl = {
             const user = await Users.findById({ _id: leader })
 
             if (!user)
-                return res.status(400).json({ msg: "User does not exist." })
+                return res.json({ msg: "User does not exist." })
 
             if (name === "" || lat === "" || lng === "" || leader === "" || address === "")
-                return res.status(400).json({ msg: "Please fill all the requirement." })
+                return res.json({ msg: "Please fill all the requirement." })
 
             const newSite = new Sites({
                 name,
@@ -69,7 +69,7 @@ const siteCtrl = {
 
             return res.json({ msg: `Site has been created. You are now the leader of ${name}` })
         } catch (error) {
-            return res.status(500).json({ msg: error.message })
+            return res.json({ msg: error.message })
         }
     },
 
@@ -83,7 +83,7 @@ const siteCtrl = {
 
             for (let i = 0; i < array.length; i++) {
                 if (JSON.stringify(listofpeople) === JSON.stringify(array[i])) {
-                    return res.status(400).json({ msg: `This account has already joined ${site.name}` })
+                    return res.json({ msg: `This account has already joined ${site.name}` })
                 }
             }
 
@@ -93,7 +93,7 @@ const siteCtrl = {
 
             res.json({ msg: `Successfully join ${site.name}` })
         } catch (error) {
-            return res.status(500).json({ msg: error.message })
+            return res.json({ msg: error.message })
         }
     },
 
@@ -107,7 +107,7 @@ const siteCtrl = {
 
             res.json({ msg: `Successfully update number of tested people on ${site.name}` })
         } catch (error) {
-            return res.status(500).json({ msg: error.message })
+            return res.json({ msg: error.message })
         }
     },
 
@@ -118,12 +118,12 @@ const siteCtrl = {
                 .populate({ path: "listofpeople", select: "-__v -createdAt -updatedAt -password" })
 
             if (!info)
-                return res.status(400).json({ msg: "NOT FOUND." })
+                return res.json({ msg: "NOT FOUND." })
 
             return res.json(info)
 
         } catch (error) {
-            return res.status(500).json({ msg: error.message })
+            return res.json({ msg: error.message })
         }
     },
 
@@ -138,7 +138,7 @@ const siteCtrl = {
 
             return res.json(sites)
         } catch (error) {
-            return res.status(500).json({ msg: error.message })
+            return res.json({ msg: error.message })
         }
     }
 }
