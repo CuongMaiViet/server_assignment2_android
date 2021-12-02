@@ -16,7 +16,7 @@ class APIfeatures {
         let queryStr = JSON.stringify(queryObj)
         queryStr = queryStr.replace(/\b(gte|gt|lt|lte|regex)\b/g, match => '$' + match)
 
-        this.query.find(JSON.parse(queryStr))
+        this.query.find(JSON.parse(queryStr.toLowerCase()))
         return this
     }
 
