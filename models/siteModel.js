@@ -23,7 +23,7 @@ const Sites = new mongoose.Schema({
     },
     description: {
         type: String,
-        default: ''
+        default: 'This is the text that describe some aspects of a site.'
     },
     address: {
         type: String,
