@@ -1,5 +1,18 @@
 const mongoose = require('mongoose')
 
+const NotificationSchema = mongoose.Schema(
+    {
+        message: {
+            type: String,
+            default: ''
+        },
+        status: {
+            type: Boolean,
+            default: false,
+        },
+    }
+);
+
 const Sites = new mongoose.Schema({
     name: {
         type: String,
@@ -40,17 +53,7 @@ const Sites = new mongoose.Schema({
         default: 0
     },
     notification:{
-        type: Object,
-        default: {
-            message: {
-                type: String,
-                default: ""
-            },
-            status: {
-                type: Boolean,
-                default: false
-            }
-        }
+        type: NotificationSchema, 
     },
 }, {
     timestamps: true
