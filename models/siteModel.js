@@ -53,8 +53,7 @@ const Sites = new mongoose.Schema({
         default: 0
     },
     notification:{
-        type: Object,
-        default: NotificationSchema
+        type: [NotificationSchema], 
     },
 }, {
     timestamps: true
