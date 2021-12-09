@@ -53,7 +53,17 @@ const Sites = new mongoose.Schema({
         default: 0
     },
     notification:{
-        type: NotificationSchema
+        type: Object,
+        default:{
+        message: {
+            type: String,
+            default: ''
+        },
+        status: {
+            type: Boolean,
+            default: false,
+        },
+    }
     },
 }, {
     timestamps: true
