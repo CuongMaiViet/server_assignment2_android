@@ -38,7 +38,20 @@ const Sites = new mongoose.Schema({
     numberoftested: {
         type: Number,
         default: 0
-    }
+    },
+    notification:{
+        type: Object,
+        default: {
+            message: {
+                type: String,
+                default: ""
+            },
+            status: {
+                type: Boolean,
+                default: false
+            }
+        }
+    },
 }, {
     timestamps: true
 })
