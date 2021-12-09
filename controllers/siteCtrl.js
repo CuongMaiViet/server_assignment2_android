@@ -111,6 +111,20 @@ const siteCtrl = {
         }
     },
 
+    updateNotification: async (req, res) => {
+        try {
+            const { notification } = req.body
+
+            const site = await Sites.findById({ _id: req.params.id })
+
+            await Sites.findByIdAndUpdate({ _id: req.params.id }, { notification })
+
+            res.json({ msg: `Sending notification to members in ${site.name}` })
+        } catch (error) {
+            return res.json({ msg: error.message });
+        }
+    },
+    
     getAllInfoSite: async (req, res) => {
         try {
             const info = await Sites.findById({ _id: req.params.id })
