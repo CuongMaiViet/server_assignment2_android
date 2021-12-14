@@ -54,6 +54,9 @@ const siteCtrl = {
             
             if (user.role === 1)
                 return res.json({ msg: "You have already been a leader of the site." })
+                       
+            if (user.role === 3)
+                return res.json({ msg: "You have already been a volunteer of the site. Please contact leader of that site if want to go out." })
 
             if (name === "" || lat === "" || lng === "" || leader === "" || address === "")
                 return res.json({ msg: "Please fill all the requirement." })
@@ -83,8 +86,6 @@ const siteCtrl = {
             const site = await Sites.findById({ _id: req.params.id })
             const user = await Users.findById({ _id: listofpeople })
             
-            if (user.role === 3)
-                return res.json({ msg: "One user can only be the volunteer of a site." })
             
             let array = site.listofpeople
 
@@ -93,6 +94,9 @@ const siteCtrl = {
                     return res.json({ msg: `This account has already joined ${site.name}` })
                 }
             }
+            
+            if (user.role === 3)
+                return res.json({ msg: "One user can only be the volunteer of a site." })
 
             array = JSON.stringify([...array, listofpeople])
 
