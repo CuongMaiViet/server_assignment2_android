@@ -70,7 +70,7 @@ const siteCtrl = {
             await newSite.save()
             await Users.findByIdAndUpdate({ _id: leader }, { role: 1 })
 
-            return res.json({ msg: `Site has been created. You are now the leader of ${name}` })
+            return res.json({ msg: `Site has been created.` })
         } catch (error) {
             return res.json({ msg: error.message })
         }
@@ -81,7 +81,11 @@ const siteCtrl = {
             const { listofpeople } = req.body
 
             const site = await Sites.findById({ _id: req.params.id })
-
+            const user = await Users.findById({ _id: listofpeople })
+            
+            if (user.role === 3)
+                return res.json({ msg: "One user can only be the volunteer of a site." })
+            
             let array = site.listofpeople
 
             for (let i = 0; i < array.length; i++) {
@@ -93,7 +97,8 @@ const siteCtrl = {
             array = JSON.stringify([...array, listofpeople])
 
             await Sites.findByIdAndUpdate({ _id: req.params.id }, { listofpeople: JSON.parse(array) })
-
+            await Users.findByIdAndUpdate({ _id: listofpeople }, { role: 3 })
+            
             res.json({ msg: `Successfully join ${site.name}` })
         } catch (error) {
             return res.json({ msg: error.message })
