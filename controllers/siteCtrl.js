@@ -51,6 +51,9 @@ const siteCtrl = {
 
             if (!user)
                 return res.json({ msg: "User does not exist." })
+            
+            if (user.role === 1)
+                return res.json({ msg: "You have already been a leader of the site." })
 
             if (name === "" || lat === "" || lng === "" || leader === "" || address === "")
                 return res.json({ msg: "Please fill all the requirement." })
